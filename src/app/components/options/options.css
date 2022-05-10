@@ -1,0 +1,116 @@
+#options {
+    background-color: rgb(20, 20, 20);
+    height: 70%;
+    width: 40%;
+    position: absolute;
+    z-index: 999;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#options .closeOptionsIcon {
+
+    padding: 15px 25px;
+}
+
+#options .header {
+    width: initial;
+    height: auto;
+    padding: 15px 25px;
+    text-align: center;
+    background-color: rgb(20, 20, 20);
+    z-index: 1;
+    position: relative;
+}
+#options .header h2{
+    margin: 0;
+}
+
+#options .content {
+    overflow: auto;
+    position: relative;
+    height: calc(100% - 65px);
+    width: 100%;
+    background-color: rgba(20, 20, 20, 0.918);
+    display: grid;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: start;
+    align-content: center;
+}
+
+#options .imgLogo{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+#options .button {
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+}
+
+#options .close {
+    position: absolute;
+    bottom: 12px;
+    right: 10px;
+    font-size: 25px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.buttonsColorsTheme{
+    display: inline-flex;
+    margin: 20px 20px;
+    align-items: center;
+}
+
+.optionsIconSound{
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.optionsIconSound:hover{
+    filter: opacity(.5);
+    cursor: pointer;
+}
+
+.buttonsColorsTheme h3 {
+    margin: 0;
+}
+
+
+.buttonColor {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    margin-left: 25px;
+    color: rgb(20, 20, 20);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttonColor.white {
+    background-color: white;
+}
+.buttonColor.green {
+    background-color: rgba(76, 179, 76);
+}
+.buttonColor.pink {
+    background-color: rgb(179, 76, 76);
+}
+
+
+.buttonColor:hover {
+    box-shadow: 0 0 5px black inset;
+}

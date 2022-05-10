@@ -1,0 +1,56 @@
+[
+    {
+        "open": false,
+        "archivo": "dc1001",
+        "status": "SE BUSCA",
+        "nombre": "Marcel García",
+        "alias": "Resortes",
+        "edad": "24 años",
+        "altura": "170 cm",
+        "peso": "73 kg",
+        "sexo": "Masculino",
+        "img": "img/luca.png",
+        "huellas": ["aaa", "bbb", "ccc", "ddd", "eee"],
+        "crimenes" : [
+            {
+                "code": "H - 601",
+                "crimen": "Hacker",
+                "condena": "1A 0M 0D",
+                "reporte": "dr1001a"
+            },
+            {
+                "code": "AV - 501",
+                "crimen": "Asalto y Violencia",
+                "condena": "NC",
+                "reporte": "dr1001b"
+            }
+        ]
+    },
+    {
+        "open": false,
+        "archivo": "dc1002",
+        "status": "SE BUSCA",
+        "nombre": "Marcel García1",
+        "alias": "Resortess",
+        "edad": "24 años",
+        "altura": "170 cm",
+        "peso": "73 kg",
+        "sexo": "Masculino",
+        "img": "img/luca.png",
+        "huellas": ["fff", "aab", "aba", "baa", "aac"],
+        "crimenes" : [
+            {
+                "code": "H - 601",
+                "crimen": "Hacker",
+                "condena": "1A 0M 0D",
+                "reporte": "dr1001a"
+            },
+            {
+                "code": "AV - 501",
+                "crimen": "Asalto y Violencia",
+                "condena": "NC",
+                "reporte": "dr1001b"
+            }
+        ]
+    }
+]

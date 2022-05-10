@@ -1,0 +1,235 @@
+/* NOTAS */
+
+#modalMessage {
+    /* display: inline-flex; */
+    /* flex-direction: column; */
+    width: 100%;
+    height: 100%;
+    /* flex-wrap: nowrap; */
+    /* justify-content: flex-end; */
+}
+
+#modalMessage .viewMessage {
+    height: 93%;
+    overflow: auto;
+}
+
+#modalMessage .addMessage {
+    display: inline-flex;
+    width: 95%;
+    position: fixed;
+    bottom: 8px;
+    left: 8px;
+}
+
+#modalMessage .boxMessage{
+    height: 20px;
+    max-height: 20px;
+    min-height: 20px;
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
+    min-width: calc(100% - 40px);
+    background-color: rgb(20, 20, 20);
+    box-shadow: 0 0 0 transparent;
+    outline: 0px;
+    text-decoration-line: none;
+}
+
+#modalMessage .saveMessage {
+    height: 26px;
+    width: 35px;
+    /* background-color: rebeccapurple; */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* #modalMessage #viewMessage div p {
+    font-size: 12px;
+    margin: 5px 0;
+    filter: blur(3px);
+}
+#modalMessage #viewMessage div p:hover {
+    filter: blur(0px);
+    cursor: pointer;
+} */
+
+#modalMessage .msgText {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    margin: 5px 0;
+    width: 95%;
+}
+
+#modalMessage .msgText p{
+    filter: blur(2px);
+}
+
+#modalMessage .msgText:hover p {
+    filter: blur(0px);
+}
+
+#modalMessage .msgText .msgIcons {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#modalMessage .msgText .msgIcons .msgIcon {
+    height: 14px;
+    width: 14px !important;
+    margin-left: 10px;
+    filter: brightness(.5);
+}
+
+#modalMessage .msgText .msgIcons .msgIcon:hover {
+    cursor: pointer;
+    filter: brightness(1);
+}
+
+
+
+/* CONSOLA */
+
+
+#kerexe {
+    height: initial;
+}
+
+#kerexe .inputText {
+    background-color: transparent;
+    box-shadow: 0 0 0 transparent;
+    border: 0px solid transparent ;
+    outline: 0px;
+    width: 100%;
+    text-decoration-line: none;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#kerexe p {
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+/* .archivo {
+    font-size: 14px;
+}
+
+.archivo hr {
+    margin: 20px 0;
+}
+
+.archivo .archivoHeader {
+    margin-top: 10px;
+    font-size: 45px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.archivo .archivoHeader h5{ 
+    font-size: 20px;
+    text-align: center;
+}
+.archivo .archivoHeader h6{ 
+    font-size: 14px;
+    text-align: center;
+}
+
+.archivo .docStatus {
+    padding: 5px 45px 10px 45px;
+    text-align: center;
+    width: auto;
+    margin: 20px auto;
+    border-style: dashed !important;
+    letter-spacing: 10px;
+}
+
+.archivo .top {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: fit-content;
+}
+
+.archivo .top .picture {
+    height: 160px;
+    width: 160px;
+    margin-right: 10px;
+}
+
+.archivo .top .info p{
+    margin: 5px 0;
+}
+
+.archivo .archivoText {
+    padding: 0 10px;
+    text-align: justify !important;
+}
+
+.archivo .picture .archivoImg {
+    width: auto;
+    height: 160px;
+}
+
+.archivo .archivoSubTitle {
+    text-align: center;
+    margin-bottom: 5px;
+    letter-spacing: 3px;
+}
+
+.archivo .tableDoc {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+}
+
+.archivo .tableDoc thead th{
+    font-size: 12px;
+    padding: 7px 0;
+}
+.archivo .tableDoc tbody th{
+    font-size: 10px;
+    padding: 7px 0;
+}
+
+.huellas1 {
+    display: inline-flex;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 75px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.huella1 {
+    position: relative;
+    width: 50px;
+    height: 75px;
+}
+
+.huellas1 img{
+    position: absolute;
+    top: 0;
+    left: 0;
+} */
+
+
+/* LEEME.txt */
+
+.Leeme {
+    padding: 10px;
+}
+
+.Leeme p {
+    text-align: justify;
+}

@@ -1,0 +1,114 @@
+.archivo {
+    font-size: 14px;
+}
+
+.archivo hr {
+    margin: 20px 0;
+}
+
+.archivo .archivoHeader {
+    margin-top: 10px;
+    font-size: 45px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.archivo .archivoHeader h5{ 
+    font-size: 20px;
+    text-align: center;
+}
+.archivo .archivoHeader h6{ 
+    font-size: 14px;
+    text-align: center;
+}
+
+.archivo .docStatus {
+    padding: 5px 45px 10px 45px;
+    text-align: center;
+    width: auto;
+    margin: 20px auto;
+    border-style: dashed !important;
+    letter-spacing: 10px;
+}
+
+.archivo .top {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: fit-content;
+}
+
+.archivo .top .picture {
+    height: 160px;
+    width: 160px;
+    /* background-color: antiquewhite; */
+    margin-right: 10px;
+}
+
+.archivo .top .info p{
+    margin: 5px 0;
+}
+
+.archivo .archivoText {
+    padding: 0 10px;
+    text-align: justify !important;
+}
+
+.archivo .picture .archivoImg {
+    width: auto;
+    height: 160px;
+}
+
+.archivo .archivoSubTitle {
+    text-align: center;
+    margin-bottom: 5px;
+    letter-spacing: 3px;
+}
+
+.archivo .tableDoc {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+}
+
+.archivo .tableDoc thead th{
+    font-size: 12px;
+    padding: 7px 0;
+    /* border-top: 0px;
+    border-left: 0px;
+    border-right: 0px; */
+}
+.archivo .tableDoc tbody th{
+    font-size: 10px;
+    padding: 7px 0;
+    /* border-top: 0px;
+    border-left: 0px;
+    border-right: 0px; */
+}
+
+.huellas1 {
+    display: inline-flex;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 75px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.huella1 {
+    position: relative;
+    width: 50px;
+    height: 75px;
+}
+
+.huellas1 img{
+    position: absolute;
+    top: 0;
+    left: 0;
+}

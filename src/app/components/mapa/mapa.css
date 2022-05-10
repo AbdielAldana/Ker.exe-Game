@@ -1,0 +1,72 @@
+.mapa {
+    height: 450px;
+    width: 680px;
+    /* background-color: aliceblue; */
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.mapa .fila {
+    height: 75px;
+    width: 680px;
+    background-color: transparent;
+    /* border: 1px solid green; */
+    display: inline-flex;
+}
+
+.mapa .fila .columna{
+    height: 75px;
+    width: 68px;
+    background-color: transparent;
+    /* border: 1px solid green; */
+}
+
+.mapa .fila .columna:hover{
+    background-color: blue;
+    /* border: 1px solid green; */
+}
+
+.mapa .mapaImg {
+    position: absolute;
+    height: 450px;
+    width: 680px;
+    z-index: -1;
+    /* zoom: 5; */
+}
+
+.mapa .mapzoom {
+    /* position: absolute; */
+    height: 450px;
+    /* background-color: red; */
+    width: 680px;
+    transform: s;
+}
+
+#prinmap .content {
+    overflow: hidden !important;
+}
+
+.mapa .mapzoom.openM {
+    z-index: 1;
+}
+.mapa .mapzoom.closeM {
+    z-index: -1;
+}
+
+.mapa .dataMap {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    background-color: rgb(20, 20, 20);
+}
+
+.cola {
+    fill:red !important;
+}
+
+.cls-4 {
+    cursor: pointer;
+}
+
+.cls-1{fill:#141414;}.cls-2{fill:#3c3c3c;}.cls-3{fill:gray;}.cls-5{fill:none;}.cls-6{fill:#f2f2f2;}

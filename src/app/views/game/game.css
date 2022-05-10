@@ -1,0 +1,74 @@
+#game {
+    /* background-color: red; */
+    height: 720px;
+    width: 1280px;
+}
+
+#game .logoBack {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 0;
+    filter: opacity(.3);
+    height: 300px;
+    width: 300px;
+}
+
+#game .dayContent{
+    position: absolute;
+    width: 200px;
+    /* top: 5px; */
+    /* left: 0;
+    right: 0;
+    margin: 0 auto; */
+    padding: 10px;
+    /* display: inline-flex;
+    align-items: center;
+    justify-content: space-between; */
+    background-color: rgba(20, 20, 20, 0.678);
+    z-index: 9999;
+}
+
+
+#game .dayContent.handleWi {
+    cursor: grab;
+    z-index: 9999;
+  }
+#game .dayContent.handleWi:active {
+    cursor: grabbing;
+    z-index: 9999 !important;
+}
+
+
+#game .dayContent .dayButton {
+    padding: 3px 10px 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: -2px -2px 3px rgb(70, 70, 70 ) inset;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+#game .dayContent .dayButton:hover {
+    filter: brightness(1.1);
+}
+#game .dayContent .dayButton:active {
+    box-shadow: 2px 2px 3px rgb(70, 70, 70) inset;
+}
+
+#game .dayContent .barCount {
+    height: 10px;
+    width: auto;
+}
+
+#game .dayContent .barCount .barCountView{
+    height: 10px;
+}
+
+#game .dataListActions {
+    font-size: 12px;
+}

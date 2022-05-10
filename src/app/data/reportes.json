@@ -1,0 +1,17 @@
+[
+    {
+        "open": false,
+        "archivo": "dr1001a",
+        "tipo": "reporte1"
+    },
+    {
+        "open": false,
+        "archivo": "dr1001b",
+        "tipo": "reporte2"
+    },
+    {
+        "open": false,
+        "archivo": "dr1001c",
+        "tipo": "reporte3"
+    }
+]

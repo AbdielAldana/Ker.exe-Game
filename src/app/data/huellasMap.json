@@ -1,0 +1,92 @@
+[
+    {
+        "id": "a",
+        "type": "c",
+        "img": "img/huellas/c1.png"
+    },
+    {
+        "id": "b",
+        "type": "c",
+        "img": "img/huellas/c2.png"
+    },
+    {
+        "id": "c",
+        "type": "c",
+        "img": "img/huellas/c3.png"
+    },
+    {
+        "id": "d",
+        "type": "c",
+        "img": "img/huellas/c4.png"
+    },
+    {
+        "id": "e",
+        "type": "c",
+        "img": "img/huellas/c5.png"
+    },
+    {
+        "id": "f",
+        "type": "c",
+        "img": "img/huellas/c6.png"
+    },
+    {
+        "id": "a",
+        "type": "u",
+        "img": "img/huellas/u1.png"
+    },
+    {
+        "id": "b",
+        "type": "u",
+        "img": "img/huellas/u2.png"
+    },
+    {
+        "id": "c",
+        "type": "u",
+        "img": "img/huellas/u3.png"
+    },
+    {
+        "id": "d",
+        "type": "u",
+        "img": "img/huellas/u4.png"
+    },
+    {
+        "id": "e",
+        "type": "u",
+        "img": "img/huellas/u5.png"
+    },
+    {
+        "id": "f",
+        "type": "u",
+        "img": "img/huellas/u6.png"
+    },
+    {
+        "id": "a",
+        "type": "d",
+        "img": "img/huellas/d1.png"
+    },
+    {
+        "id": "b",
+        "type": "d",
+        "img": "img/huellas/d2.png"
+    },
+    {
+        "id": "c",
+        "type": "d",
+        "img": "img/huellas/d3.png"
+    },
+    {
+        "id": "d",
+        "type": "d",
+        "img": "img/huellas/d4.png"
+    },
+    {
+        "id": "e",
+        "type": "d",
+        "img": "img/huellas/d5.png"
+    },
+    {
+        "id": "f",
+        "type": "d",
+        "img": "img/huellas/d6.png"
+    }
+]
