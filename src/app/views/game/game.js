@@ -1,3 +1,5 @@
+// Dev 12 - Mayo - 2022
+
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import $ from 'jquery'
