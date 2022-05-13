@@ -2,16 +2,11 @@
     {
         "open": false,
         "archivo": "dr1001a",
-        "tipo": "reporte1"
+        "informe" :""
     },
     {
         "open": false,
         "archivo": "dr1001b",
-        "tipo": "reporte2"
-    },
-    {
-        "open": false,
-        "archivo": "dr1001c",
-        "tipo": "reporte3"
+        "informe" :""
     }
 ]
