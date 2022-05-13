@@ -162,7 +162,7 @@ input[type=range].themeRange.pink::-moz-range-thumb {
 }
 .handle:active {
   cursor: grabbing;
-  z-index: 999 !important;
+  z-index: 11 !important;
 }
 
 .button {

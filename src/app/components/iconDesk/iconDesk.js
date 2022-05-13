@@ -14,9 +14,9 @@ function IconDesk(props) {
         if(props.modal){
             props.modal(true)
             for (let i = 0; i < $(".modal").length; i++) {
-                $($(".modal")[i]).css({"z-index": "949", "background-color": "rgb(30, 30, 30)"})
+                $($(".modal")[i]).css({"z-index": "9", "background-color": "rgb(30, 30, 30)"})
             }
-            $("."+props.identify).css({"z-index": "950", "background-color": "rgb(20, 20, 20)"})
+            $("."+props.identify).css({"z-index": "10", "background-color": "rgb(20, 20, 20)"})
 
         }
         if(props.fn){

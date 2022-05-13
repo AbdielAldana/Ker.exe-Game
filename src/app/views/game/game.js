@@ -14,9 +14,6 @@ import Apuntes from '../../components/apuntes/apuntes'
 import CriminalesDoc from '../../components/documentos/criminales/criminales'
 import Noticias from "../../components/noticias/noticias";
 
-// Extras
-import Options from '../../components/options/options'
-
 // Icons
 import { IoDocumentSharp } from "react-icons/io5";
 import { FaCogs, FaDoorOpen, FaFingerprint, FaFileAlt, FaNewspaper } from "react-icons/fa";
@@ -34,10 +31,10 @@ import criminalesJSON from "../../data/criminales.json"
 import reportesJSON from "../../data/reportes.json"
 import Sonidos from '../../components/sonidos/sonidos';
 
+const G_CountMax = 10
+
 function Game(props) {
     const [cookies, setCookie] = useCookies(['messages', 'listKill', "day", "volume"]);
-
-    const [openOptions, setOpenOptions] = useState(false)
 
     const [stateCriminales, setStateCriminales] = useState(criminalesJSON)
     // const [tempReportes, setTempReportes] = useState(reportes)
@@ -118,27 +115,44 @@ function Game(props) {
         if(data.status === "true"){
             let tempCount = countCommands
             tempCount = +tempCount + 1
-            if(tempCount > 20){
-                console.log(123);
-            } else {
+            if(tempCount <= G_CountMax){
                 setcountCommands(tempCount)
             }
         } else{
             Sonidos("error", cookies.volume)
         }
-        // console.log(data);
     }
 
     const [day, setDay] = useState(1)
 
     const nextDay = () => {
-        setcountCommands(0)
-        let tempDay = +day + 1
-        setDay(tempDay)
-        setCookie("day", tempDay, {
-            path: "/",
-            maxAge: 99000000
-        })
+        console.log(countCommands);
+        console.log(G_CountMax);
+        if(countCommands === G_CountMax){
+            setcountCommands(0)
+            closeAllModals()
+            let tempDay = +day + 1
+            setDay(tempDay)
+            setCookie("day", tempDay, {
+                path: "/",
+                maxAge: 99000000
+            })
+        } else {
+        }
+    }
+
+    // Cierra todas las ventanas
+    const closeAllModals = () => {
+        let tempStateCriminales = stateCriminales
+        tempStateCriminales.filter(x => x.open === true).forEach(a => a.open = false)
+        setStateCriminales([...tempStateCriminales])
+
+        setOpenLEEME(false)
+        setOpenKerexe(false)
+        setOpenApuntes(false)
+        setOpenMapa(false)
+        setOpenNoticias(false)
+        setopenkerdata(false)
     }
 
 
@@ -163,24 +177,29 @@ function Game(props) {
                     <div className={clsx("dayButton themeBorder", cookies.themeColor)} onClick={nextDay}>
                         <p>Fin del Día</p>
                     </div>
+                    <div className={clsx("dayButton themeBorder", cookies.themeColor)} onClick={closeAllModals}>
+                        <p>Cerrar todo</p>
+                    </div>
                     <div className={clsx("barCount themeBorder", cookies.themeColor)}>
                         <div
-                            style={{width: ((countCommands * 100)/20) + "%" }}
+                            style={{width: ((countCommands * 100)/G_CountMax) + "%" }}
                             className={clsx("barCountView themeBG", cookies.themeColor)}>
                         </div>
                     </div>
                 </div>
             </Draggable>
 
-            {/* Contador */}
-            <IconDesk
-                identify="contador"
-                icon={<GiRingedPlanet />}
-                title="ker.data"
-                modal={setopenkerdata}
-                position={[(0), (0)]}
-            >
-            </IconDesk>
+            {/* DataKerex */}
+            {openKerexe &&
+                <IconDesk
+                    identify="contador"
+                    icon={<GiRingedPlanet />}
+                    title="ker.data"
+                    modal={setopenkerdata}
+                    position={[(0), (0)]}
+                >
+                </IconDesk>
+            }
             <Modal
                 open={openkerdata}
                 setOpen={setopenkerdata}
@@ -343,20 +362,6 @@ function Game(props) {
             >
             </Modal>
 
-            {/* OPCIONES */}
-            {/* <IconDesk
-                identify="opciones"
-                icon={<FaCogs />}
-                title="Opciones"
-                modal={setOpenOptions}
-                position={[(80 * 14), (72 * 9)]}
-            >
-            </IconDesk>
-            <Options
-                openOptions={openOptions}
-                setOpenOptions={setOpenOptions}
-            ></Options> */}
-
             {/* PANTALLA DE INICIO */}
             <IconDesk
                 identify="inicio"
@@ -432,6 +437,12 @@ function Kerexe(openModal, kill, kerData, countCommands) {
     const [cookies] = useCookies(['themeColor']);
     const [consoleCodes, setConsoleCodes] = useState(["Ker.exe [Versión 1.0.1] user@desktop-11322 ~"]);
 
+    useEffect(()=>{
+        if(countCommands === 0){ // eslint-disable-next-line
+            setConsoleCodes(["Ker.exe [Versión 1.0.1] user@desktop-11322 ~"]) // eslint-disable-next-line
+        } // eslint-disable-next-line
+    }, [countCommands])
+
     $(".kerexe").unbind('click').bind('click', (e) => {
         $("#kerexeInputText").focus()
     })
@@ -442,7 +453,7 @@ function Kerexe(openModal, kill, kerData, countCommands) {
         let tempCriminales = criminalesJSON
         let tempReportes = reportesJSON
 
-        if (e.which === 13 && countCommands < 20) {
+        if (e.which === 13 && countCommands < G_CountMax) {
 
             if(tempconsoleCodes.length > 5) {tempconsoleCodes = ["Ker.exe [Versión 1.0.1] user@desktop-11322 ~"]}
 
@@ -504,7 +515,7 @@ function Kerexe(openModal, kill, kerData, countCommands) {
             setConsoleCodes([...tempconsoleCodes])
             // Limpia el input
             $("#kerexeInputText").val("> ")
-        } else if(e.which === 13 && countCommands === 20) {
+        } else if(e.which === 13 && countCommands === G_CountMax) {
             Sonidos("error", cookies.volume)
             if(tempconsoleCodes.length > 1) {tempconsoleCodes = ["Ker.exe [Versión 1.0.1] user@desktop-11322 ~"]}
             tempconsoleCodes.push("La cuota de hoy se ha cumplido.")

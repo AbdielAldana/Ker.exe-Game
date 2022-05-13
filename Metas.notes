@@ -1,0 +1,55 @@
+== A medias actual ==
+Mapa:
+    [ ] Termina Mapa [JSON]
+        [ ] Nombre de zonas
+        [ ] Asignar Reportes [↓↓↓]
+Reportes:
+    [ ] Vista de los reportes [VIEW]
+    [ ] Crear Reportes [JSON]
+Criminales:
+    [ ] Informacion [JSON]
+
+
+
+-= Ideas =-
+Conceptos:
+    [ ] Usar nombres de cientificos famosos
+Documentos:
+    [ ] Historial de los policias
+    [ ] Historial de Ciudadanos
+Consola:
+    [ ] Definir Comandos
+        [ ] cd
+        [ ] dir
+        [ ] connect
+        [ ] ping
+        [ ] ipconfig
+
+
+
+== Mecanicas ==
+Dia:
+    [ ] Pantalla de transicion del dia
+        [ ] Widget del dia [WINDOW]
+        [ ] Mostrar avances [VIEW]
+
+    [ ] Al terminar mostrar Periodico
+        [ ] Periodico
+            [!] Vista
+            [ ] JSON
+            [ ] Funcionalidad
+
+
+
+== HISTORIA ==
+    [ ] Giro Principal Definir bien
+    [ ] Generar arbol de criminales
+
+
+== Terminado hasta el 10 de Mayo 2022 == (Puede Mejorar)
+[√] Componente Modals
+[√] Componente Icons
+[√] Mapa
+[√] Consola
+[√] Opciones
+[√] Registro de comandos

@@ -14,27 +14,17 @@ function Modal(props) {
 
 
     const handleStart = ()=>{
-        // console.log(props.open);
-        // $("."+identify).removeClass("closeModal")
-        // $("."+identify).addClass("openModal")
         for (let i = 0; i < $(".modal").length; i++) {
-            $($(".modal")[i]).css({"z-index": "949", "background-color": "rgb(30, 30, 30)"})
+            $($(".modal")[i]).css({"z-index": "9", "background-color": "rgb(30, 30, 30)"})
         }
-        // $(".modal").css({"z-index": "949", "background-color": "rgb(30, 30, 30)"})
-        $("."+identify).css({"z-index": "950", "background-color": "rgb(20, 20, 20)"})
+        $("."+identify).css({"z-index": "10", "background-color": "rgb(20, 20, 20)"})
     }
 
     const handleDrag = () =>{
-        // $("."+identify).removeClass("closeModal")
-        // $("."+identify).addClass("openModal")
     }
     const handleStop = () =>{
-        // $("."+identify).removeClass("closeModal")
-        // $("."+identify).addClass("openModal")
     }
 
-    // let open = props.open
-    // let setOpen = props.setOpen
 
     const closeModal = () => {
         if(props.map){
@@ -63,25 +53,6 @@ function Modal(props) {
     $( "#"+props.identify ).dblclick(function() {
         minModal()
     })
-
-    // useEffect(() => {
-    //     const validation = () => {
-    //         // if($(".min"+identify).hasClass("minModal")) return;
-    //         // console.log(1);
-    //         for (let i = 0; i < $(".modal").length; i++) {
-    //             $($(".modal")[i]).css({"z-index": (949 - i), "background-color": "rgb(30, 30, 30)"})
-    //         }
-    //         $("."+identify).css({"z-index": "950", "background-color": "rgb(20, 20, 20)"})
-    //         // $(".modal").css({"z-index": "949", "background-color": "rgb(30, 30, 30)"})
-    //         console.log("XDDDD");
-    //     }
-    //     if(props.open){ // eslint-disable-next-line
-    //         validation(); // eslint-disable-next-line
-    //     } // eslint-disable-next-line
-    // })
-    //  useEffect(()=>{
-    //         handleStart(); // eslint-disable-next-line
-    //  },[props.setOpen])
 
 
     return(

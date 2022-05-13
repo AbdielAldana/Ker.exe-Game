@@ -43,9 +43,14 @@ function Criminales(props) {
                 </div>
             </div>
 
-            <div className={clsx("docStatus themeBorder", cookies.themeColor)}>
-                <h1>{doc.status}</h1>
-            </div>
+            {doc.status &&
+                <div className={clsx("docStatus themeBorder", cookies.themeColor)}>
+                    <h1>{doc.status}</h1>
+                </div>
+            }
+            {!doc.status &&
+                <hr className={cookies.themeColor} />
+            }
 
             <div className="archivoText">
                 <h3 className="archivoSubTitle"> = Presuntos Crimenes = </h3>

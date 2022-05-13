@@ -10,7 +10,7 @@
         "peso": "73 kg",
         "sexo": "Masculino",
         "img": "img/luca.png",
-        "huellas": ["aaa", "bbb", "ccc", "ddd", "eee"],
+        "huellas": ["add", "acf", "ebd","ddf","eae"],
         "crimenes" : [
             {
                 "code": "H - 601",
@@ -29,7 +29,7 @@
     {
         "open": false,
         "archivo": "dc1002",
-        "status": "SE BUSCA",
+        "status": false,
         "nombre": "Marcel García1",
         "alias": "Resortess",
         "edad": "24 años",
@@ -37,19 +37,25 @@
         "peso": "73 kg",
         "sexo": "Masculino",
         "img": "img/luca.png",
-        "huellas": ["fff", "aab", "aba", "baa", "aac"],
+        "huellas": ["baf", "bee", "cfd", "efb", "fed"],
         "crimenes" : [
             {
                 "code": "H - 601",
                 "crimen": "Hacker",
-                "condena": "1A 0M 0D",
-                "reporte": "dr1001a"
+                "condena": "Inocente",
+                "reporte": "dr1002a"
             },
             {
-                "code": "AV - 501",
-                "crimen": "Asalto y Violencia",
-                "condena": "NC",
-                "reporte": "dr1001b"
+                "code": "H - 601",
+                "crimen": "Hacker",
+                "condena": "Inocente",
+                "reporte": "dr1002b"
+            },
+            {
+                "code": "H - 601",
+                "crimen": "Hacker",
+                "condena": "Inocente",
+                "reporte": "dr1002c"
             }
         ]
     }
