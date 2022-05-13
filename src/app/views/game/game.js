@@ -2,19 +2,21 @@
 
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import $ from 'jquery'
+// import $ from 'jquery'
 import clsx from "clsx"
 
 // Components
 import Modal from '../../components/modal/modal'
 import IconDesk from '../../components/iconDesk/iconDesk'
 import Draggable from 'react-draggable';
+import Sonidos from '../../components/sonidos/sonidos';
 
 // Views in Modals
 import Mapa from '../../components/mapa/mapa'
 import Apuntes from '../../components/apuntes/apuntes'
 import CriminalesDoc from '../../components/documentos/criminales/criminales'
 import Noticias from "../../components/noticias/noticias";
+import Consola from '../../components/consola/consola';
 
 // Icons
 import { IoDocumentSharp } from "react-icons/io5";
@@ -31,7 +33,6 @@ import logoIcon from "../../../media/logo.png"
 // Data JSON
 import criminalesJSON from "../../data/criminales.json"
 import reportesJSON from "../../data/reportes.json"
-import Sonidos from '../../components/sonidos/sonidos';
 
 const G_CountMax = 10
 
@@ -192,16 +193,14 @@ function Game(props) {
             </Draggable>
 
             {/* DataKerex */}
-            {openKerexe &&
-                <IconDesk
-                    identify="contador"
-                    icon={<GiRingedPlanet />}
-                    title="ker.data"
-                    modal={setopenkerdata}
-                    position={[(0), (0)]}
-                >
-                </IconDesk>
-            }
+            <IconDesk
+                identify="contador"
+                icon={<GiRingedPlanet />}
+                title="ker.data"
+                modal={setopenkerdata}
+                position={[(0), (0)]}
+            >
+            </IconDesk>
             <Modal
                 open={openkerdata}
                 setOpen={setopenkerdata}
@@ -227,7 +226,6 @@ function Game(props) {
                 position={{ x: 0, y: 0 }}
             >
             </Modal>
-
 
             {/* Noticias */}
             <IconDesk
@@ -266,12 +264,19 @@ function Game(props) {
                 identify="kerexe"
                 icon={<GiCowled />}
                 title="ker.exe"
-                content={Kerexe(
-                    openModal,
-                    kill,
-                    kerData,
-                    countCommands
-                )}
+                content={
+                    <Consola data={
+                        {
+                            "openModal": openModal,
+                            "countCommands": countCommands,
+                            "G_CountMax": G_CountMax,
+                            "kerData": kerData,
+                            "kill": kill,
+                            "criminalesJSON": stateCriminales,
+                            "reportesJSON": reportesJSON,
+                        }
+                    } />
+                }
                 height={300}
                 width={450}
                 position={{ x: 415, y: 210 }}
@@ -433,126 +438,5 @@ function Leeme() {
     )
 }
 
-
-// Consola
-function Kerexe(openModal, kill, kerData, countCommands) {
-    const [cookies] = useCookies(['themeColor']);
-    const [consoleCodes, setConsoleCodes] = useState(["Ker.exe [Versión 1.0.1] user@desktop-11322 ~"]);
-
-    useEffect(()=>{
-        if(countCommands === 0){ // eslint-disable-next-line
-            setConsoleCodes(["Ker.exe [Versión 1.0.1] user@desktop-11322 ~"]) // eslint-disable-next-line
-        } // eslint-disable-next-line
-    }, [countCommands])
-
-    $(".kerexe").unbind('click').bind('click', (e) => {
-        $("#kerexeInputText").focus()
-    })
-
-    $(".kerexe").unbind('keydown').bind('keydown', (e) => {
-        let tempconsoleCodes = consoleCodes
-
-        let tempCriminales = criminalesJSON
-        let tempReportes = reportesJSON
-
-        if (e.which === 13 && countCommands < G_CountMax) {
-
-            if(tempconsoleCodes.length > 5) {tempconsoleCodes = ["Ker.exe [Versión 1.0.1] user@desktop-11322 ~"]}
-
-            let value = $("#kerexeInputText").val()
-            let viewValue = value.split(" ")
-
-            // Valida que empieze con >
-            if(viewValue[0] !== ">") return false
-
-            // Valida que sea LOG el comando
-            if (viewValue[1] === "log") {
-
-                if(!viewValue[2]){
-                    tempconsoleCodes.push("Se te olvido ingresar el nombre de la ruta.")
-                    kerData({status: "false", command: viewValue[1], data: viewValue[2]})
-                } else {
-                    let findCriminal = tempCriminales.find(x => x.archivo === viewValue[2])
-                    let findReporte = tempReportes.find(x => x.archivo === viewValue[2])
-
-                    if (findCriminal) {
-                        tempconsoleCodes.push("Persona Encontrada")
-                        openModal(findCriminal.archivo)
-                        kerData({status: "true", command: viewValue[1], data: viewValue[2]})
-                    } else if(findReporte){
-                        tempconsoleCodes.push("Reporte Encontrado")
-                        kerData({status: "true", command: viewValue[1], data: viewValue[2]})
-                        // console.log(findReporte);
-                    } else {
-                        tempconsoleCodes.push("No se encontro algun archivo con ese nombre.")
-                        kerData({status: "false", command: viewValue[1], data: viewValue[2]})
-                    }
-                }
-            // Valida que sea KIRA el comando
-            } else if(viewValue[1] === "kira") {
-
-                let findCriminal = tempCriminales.find(x => x.archivo === viewValue[2])
-
-                if (findCriminal) {
-                    tempconsoleCodes.push("Persona Encontrada")
-                    kill(findCriminal.archivo)
-                    kerData({status: "true", command: viewValue[1], data: viewValue[2]})
-                } else if(!viewValue[2]) {
-                    tempconsoleCodes.push("Se te olvido ingresar el nombre de la ruta.")
-                    kerData({status: "false", command: viewValue[1], data: viewValue[2]})
-                } else {
-                    tempconsoleCodes.push("No se encontro algun archivo con ese nombre.")
-                    kerData({status: "false", command: viewValue[1], data: viewValue[2]})
-                }
-            // Valida que este Vacia el commando
-            } else if(!viewValue[1]) {
-                tempconsoleCodes.push("Ingresa algun comando.")
-                kerData({status: "false", command: viewValue[1], data: viewValue[2]})
-            // Commando Invalido
-            } else{
-                tempconsoleCodes.push("El comando [  " + viewValue[1] + "  ] no pertenece a este sistema.")
-                kerData({status: "false", command: viewValue[1], data: viewValue[2]})
-            }
-
-            setConsoleCodes([...tempconsoleCodes])
-            // Limpia el input
-            $("#kerexeInputText").val("> ")
-        } else if(e.which === 13 && countCommands === G_CountMax) {
-            Sonidos("error", cookies.volume)
-            if(tempconsoleCodes.length > 1) {tempconsoleCodes = ["Ker.exe [Versión 1.0.1] user@desktop-11322 ~"]}
-            tempconsoleCodes.push("La cuota de hoy se ha cumplido.")
-            setConsoleCodes([...tempconsoleCodes])
-            $("#kerexeInputText").val("> ")
-        }
-        $(".minkerexe").scrollTop($('.minkerexe').height());
-        $("#kerexeInputText").focus()
-    })
-
-    $(".kerexe").unbind('keyup').bind('keyup', (e) => {
-        if (e.which === 13) {
-            $(".minkerexe").scrollTop($('.minkerexe').height());
-            $("#kerexeInputText").focus()
-        }
-    })
-
-
-    return (
-        <div id="kerexe">
-            {consoleCodes.map((e, index) => {
-                return (
-                    <p key={index}>{e}</p>
-                )
-            })}
-            <input
-                type="text"
-                defaultValue="> "
-                autoComplete="off"
-                id="kerexeInputText"
-                spellCheck="false"
-                className={clsx("inputText themeFont", cookies.themeColor)}
-            />
-        </div>
-    )
-}
 
 export default Game
