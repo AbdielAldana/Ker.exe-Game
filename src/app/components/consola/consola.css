@@ -1,5 +1,6 @@
 #kerexeView {
-    height: 96%;
+    /* height: 96%; */
+    height: auto;
 }
 
 #kerexeView .inputText {
