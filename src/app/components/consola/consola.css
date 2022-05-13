@@ -1,0 +1,19 @@
+#kerexeView {
+    height: 96%;
+}
+
+#kerexeView .inputText {
+    background-color: transparent;
+    box-shadow: 0 0 0 transparent;
+    border: 0px solid transparent ;
+    outline: 0px;
+    width: 100%;
+    text-decoration-line: none;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#kerexeView p {
+    font-size: 12px;
+    margin: 10px 0;
+}
