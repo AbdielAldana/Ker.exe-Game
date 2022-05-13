@@ -13,6 +13,8 @@ function Consola(props){
     const [cookies] = useCookies([]);
     const [consoleCodes, setConsoleCodes] = useState(["Ker.exe [Versión 1.0.1] user@desktop-11322 ~"]);
 
+    let openKerexe = props.data.openKerexe
+    // let setOpenKerexe = props.data.setOpenKerexe
     let countCommands = props.data.countCommands
     let G_CountMax = props.data.G_CountMax
     let kerData = props.data.kerData
@@ -20,6 +22,8 @@ function Consola(props){
     let criminalesJSON = props.data.criminalesJSON
     let reportesJSON = props.data.reportesJSON
     let openModal = props.data.openModal
+
+    console.log(openKerexe);
 
     useEffect(()=>{
         if(countCommands === 0){ // eslint-disable-next-line
@@ -29,9 +33,16 @@ function Consola(props){
 
     $("#kerexeView").unbind('click').bind('click', (e) => {
         $("#kerexeInputText").focus()
+        $(".minkerexe").scrollTop($('#kerexeView').height());
+    })
+    $("#prinkerexe").unbind('click').bind('click', (e) => {
+        $("#kerexeInputText").focus()
+        $(".minkerexe").scrollTop($('#kerexeView').height());
     })
 
     $(".kerexe").unbind('keydown').bind('keydown', (e) => {
+        $("#kerexeInputText").focus()
+        $(".minkerexe").scrollTop($('#kerexeView').height());
         let tempconsoleCodes = consoleCodes
 
         let tempCriminales = criminalesJSON
@@ -47,41 +58,47 @@ function Consola(props){
             // Valida que empieze con >
             if(viewValue[0] !== ">") return false
 
-            // Valida que sea LOG el comando
-            if (viewValue[1] === "log") {
+            // Valida que sea Get el comando
+            if (viewValue[1] === "get") {
 
-                if(!viewValue[2]){
+                if(!viewValue[2]){ // NO tiene algo despues del comando
                     tempconsoleCodes.push("Se te olvido ingresar el nombre de la ruta.")
                     kerData({status: "false", command: viewValue[1], data: viewValue[2]})
+                } else if(viewValue[2]  === "*"){ // Ver todos los archivos
+                    // Muestra el nombre del archivo de todos los Criminales
+                    criminalesJSON.forEach(doc => {
+                        tempconsoleCodes.push("Archivo: " + doc.archivo)
+                    });
+                    // [CUANDO ESTE] Muestra el nombre del archivo de todos los Reportes
                 } else {
                     let findCriminal = tempCriminales.find(x => x.archivo === viewValue[2])
                     let findReporte = tempReportes.find(x => x.archivo === viewValue[2])
-
-                    if (findCriminal) {
+                    if (findCriminal) { // si encuentra el Archivo en Criminales, lo muetra
                         tempconsoleCodes.push("Persona Encontrada")
                         openModal(findCriminal.archivo)
                         kerData({status: "true", command: viewValue[1], data: viewValue[2]})
-                    } else if(findReporte){
+                    } else if(findReporte){ // si encuentra el Archivo en Reportes, lo muetra
                         tempconsoleCodes.push("Reporte Encontrado")
+                        // Falta la VIEW de Reportes !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         kerData({status: "true", command: viewValue[1], data: viewValue[2]})
-                        // console.log(findReporte);
-                    } else {
+                    } else { // Si NO encuentra nada
                         tempconsoleCodes.push("No se encontro algun archivo con ese nombre.")
                         kerData({status: "false", command: viewValue[1], data: viewValue[2]})
                     }
                 }
             // Valida que sea KIRA el comando
-            } else if(viewValue[1] === "kira") {
+            // } else if(viewValue[1] === "allDocuments") {
+            } else if(viewValue[1] === "kill") {
 
                 let findCriminal = tempCriminales.find(x => x.archivo === viewValue[2])
 
-                if (findCriminal) {
+                if(!viewValue[2]) {
+                    tempconsoleCodes.push("Se te olvido ingresar el nombre de la ruta.")
+                    kerData({status: "false", command: viewValue[1], data: viewValue[2]})
+                } else if (findCriminal) {
                     tempconsoleCodes.push("Persona Encontrada")
                     kill(findCriminal.archivo)
                     kerData({status: "true", command: viewValue[1], data: viewValue[2]})
-                } else if(!viewValue[2]) {
-                    tempconsoleCodes.push("Se te olvido ingresar el nombre de la ruta.")
-                    kerData({status: "false", command: viewValue[1], data: viewValue[2]})
                 } else {
                     tempconsoleCodes.push("No se encontro algun archivo con ese nombre.")
                     kerData({status: "false", command: viewValue[1], data: viewValue[2]})
@@ -106,15 +123,13 @@ function Consola(props){
             setConsoleCodes([...tempconsoleCodes])
             $("#kerexeInputText").val("> ")
         }
-        $(".minkerexe").scrollTop($('.minkerexe').height());
-        $("#kerexeInputText").focus()
+        // $(".minkerexe").scrollTop($('.minkerexe').height());
+        
     })
 
-    $(".kerexe").unbind('keyup').bind('keyup', (e) => {
-        if (e.which === 13) {
-            $(".minkerexe").scrollTop($('.minkerexe').height());
-            $("#kerexeInputText").focus()
-        }
+    $("#kerexeView").unbind('keyup').bind('keyup', (e) => {
+        $("#kerexeInputText").focus()
+        $(".minkerexe").scrollTop($('#kerexeView').height());
     })
 
     return(

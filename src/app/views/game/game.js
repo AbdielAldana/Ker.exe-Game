@@ -267,6 +267,8 @@ function Game(props) {
                 content={
                     <Consola data={
                         {
+                            "openKerexe": openKerexe,
+                            "setOpenKerexe": setOpenKerexe,
                             "openModal": openModal,
                             "countCommands": countCommands,
                             "G_CountMax": G_CountMax,
