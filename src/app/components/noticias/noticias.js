@@ -12,12 +12,12 @@ function Noticias(props) {
     return(
         <div id="noticias">
             <div className="headerNews">
-                <GiSurroundedEye />
+                <GiAngelWings />
                 <div>
                     <h2>Diario La Visión</h2>
                     <h4>Ciudad de Brumen</h4>
                 </div>
-                <GiAngelWings />
+                <GiSurroundedEye />
             </div>
 
             <hr className={cookies.themeColor} />

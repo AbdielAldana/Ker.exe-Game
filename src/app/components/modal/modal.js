@@ -8,9 +8,9 @@ import clsx from 'clsx';
 
 
 function Modal(props) {
-    const [cookies] = useCookies([]);
+    const [cookies] = useCookies(["themeColor", "volume", "scale", "day", "listKill", "messages"]);
 
-    const identify = props.identify
+    const identify = props.data.identify
 
 
     const handleStart = ()=>{
@@ -28,9 +28,17 @@ function Modal(props) {
 
     const closeModal = () => {
         if(props.map){
-            props.setOpen(props.identify)
+            let tempData = props.data
+            tempData.open = !props.data.open
+            props.setOpen(tempData.identify)
         } else{
-            props.setOpen(false)
+            let tempListApp = props.listApps
+            let tempData = props.data
+
+            tempData.open = !props.data.open
+            tempListApp[tempData.identify] = tempData
+
+            props.setData({...tempListApp})
         }
     }
 
@@ -50,7 +58,7 @@ function Modal(props) {
     }
 
     // Doble Click
-    $( "#"+props.identify ).dblclick(function() {
+    $("#bar"+identify).unbind('dblclick').bind('dblclick', (e) => {
         minModal()
     })
 
@@ -58,7 +66,7 @@ function Modal(props) {
     return(
         <Draggable
             handle=".handle"
-            defaultPosition={{x: props.position.x, y: props.position.y}}
+            defaultPosition={{x: props.data.positionModal.x, y: props.data.positionModal.y}}
             position={null}
             grid={[5, 5]}
             scale={parseFloat(cookies.scale)}
@@ -70,22 +78,22 @@ function Modal(props) {
         >
             <div
                 id={"prin"+identify}
-                className={clsx("modal themeBorder themeBoxShadow themeFont ", cookies.themeColor, identify,  props.open ? "openModal" : "closeModal")}
-                style={{width: !min ? "250px" : props.width + 'px', filter: !min ? "opacity(.9)" : ""}}
+                className={clsx("modal themeBorder themeBoxShadow themeFont ", cookies.themeColor, identify,  props.data.open ? "openModal" : "closeModal")}
+                style={{width: !min ? "250px" : props.data.width + 'px', filter: !min ? "opacity(.9)" : ""}}
                 onClick={handleStart}
             >
 
                 <div
-                    id={identify}
+                    id={"bar"+identify}
                     className={"header handle themeBorder " + cookies.themeColor}
                 >
-                    <div className="icon">{props.icon}</div>
-                    <h4 className="title">{props.title}</h4>
+                    <div className="icon">{props.data.icon}</div>
+                    <h4 className="title">{props.data.title}</h4>
                     <div className="close" onClick={closeModal}>x</div>
                     <div className="min" onClick={minModal}>{min && "-"}{!min && "+"}</div>
                 </div>
 
-                <div className={clsx("content themeScroll maxModal", cookies.themeColor,  "min"+identify)} style={{height: props.height + 'px'}}>
+                <div className={clsx("content themeScroll maxModal", cookies.themeColor,  "min"+identify)} style={{height: props.data.height + 'px'}}>
                     {props.content}
                 </div>
 

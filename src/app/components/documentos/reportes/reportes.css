@@ -1,0 +1,27 @@
+#reportes hr {
+    margin: 20px 0;
+}
+
+#reportes .archivoHeader {
+    margin-top: 10px;
+    font-size: 45px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#reportes .archivoHeader h5{
+    font-size: 20px;
+    text-align: center;
+}
+#reportes .archivoHeader h6{
+    font-size: 14px;
+    text-align: center;
+}
+
+
+#reportes p {
+    font-size: 12px;
+    text-align: justify;
+}

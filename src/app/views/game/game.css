@@ -19,12 +19,13 @@
 
 #game .dayContent{
     position: absolute;
-    width: 200px;
-    /* top: 5px; */
-    /* left: 0;
-    right: 0;
-    margin: 0 auto; */
-    padding: 10px;
+    width: 300px;
+    height: auto;
+    top: 10px;
+    /* left: 0; */
+    right: 10px;
+    /* margin: 0 auto; */
+    /* padding: 10px; */
     /* display: inline-flex;
     align-items: center;
     justify-content: space-between; */
@@ -33,13 +34,20 @@
 }
 
 
-#game .dayContent.handleWi {
+#game .dayContent .handleWi {
     cursor: grab;
     z-index: 20;
-  }
-#game .dayContent.handleWi:active {
+    padding: 5px 10px ;
+    height: 20px;
+    width: auto;
+}
+#game .dayContent .handleWi:active {
     cursor: grabbing;
     z-index: 20 !important;
+}
+
+#game .dayContent .dayBox {
+    padding: 10px;
 }
 
 
@@ -60,15 +68,49 @@
     box-shadow: 2px 2px 3px rgb(70, 70, 70) inset;
 }
 
-#game .dayContent .barCount {
-    height: 10px;
-    width: auto;
-}
-
-#game .dayContent .barCount .barCountView{
-    height: 10px;
-}
 
 #game .dataListActions {
     font-size: 12px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#game .dataListActions .dataIcons{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#game .dataListActions .dataIcons .dataCopy svg{
+    filter: opacity(.6);
+}
+#game .dataListActions .dataIcons .dataCopy svg:hover{
+    filter: opacity(1);
+}
+
+#game .dataListActions .dataCopy{
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+ .contentUse {
+    top: 31px;
+    left: -1px;
+    position: absolute;
+    width: calc(100% + 2px);
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(20, 20, 20, 1);
+}
+
+ .barCount {
+    height: 15px;
+    width: 100%;
+    /* margin-left: 10px; */
+}
+
+ .barCount .barCountView{
+    height: 15px;
 }

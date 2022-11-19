@@ -11,22 +11,28 @@ import Modal from '../../components/modal/modal'
 import IconDesk from '../../components/iconDesk/iconDesk'
 import Draggable from 'react-draggable';
 import Sonidos from '../../components/sonidos/sonidos';
+import tippy from 'tippy.js';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+// import 'tippy.js/dist/backdrop.css';
+// import 'tippy.js/animations/shift-away.css';
 
 // Views in Modals
 import Mapa from '../../components/mapa/mapa'
 import Apuntes from '../../components/apuntes/apuntes'
 import CriminalesDoc from '../../components/documentos/criminales/criminales'
+import ReportesDoc from '../../components/documentos/reportes/reportes'
 import Noticias from "../../components/noticias/noticias";
 import Consola from '../../components/consola/consola';
 
 // Icons
 import { IoDocumentSharp } from "react-icons/io5";
-import { FaCogs, FaDoorOpen, FaFingerprint, FaFileAlt, FaNewspaper } from "react-icons/fa";
+import { FaCogs, FaDoorOpen, FaFingerprint, FaFileAlt, FaNewspaper, FaBook, FaHandPeace, FaCopy } from "react-icons/fa";
 import { GiCowled, GiAngelWings, GiRingedPlanet } from "react-icons/gi";
 
 // CSS
 import "./game.css"
 import "./modals.css"
+import 'tippy.js/dist/tippy.css';
 
 // Imgs
 import logoIcon from "../../../media/logo.png"
@@ -41,7 +47,7 @@ function Game(props) {
     const [cookies, setCookie] = useCookies(['messages', 'listKill', "day", "volume"]);
 
     const [stateCriminales, setStateCriminales] = useState(criminalesJSON)
-    // const [tempReportes, setTempReportes] = useState(reportes)
+    const [stateReportes, setStateReportes] = useState(reportesJSON)
 
     // Carga lo necesario para continuar la partida.
     useEffect(()=>{
@@ -74,23 +80,20 @@ function Game(props) {
         validarCoockies(); // eslint-disable-next-line
     }, [])
 
-    // Estados de los Modals
-    const [openLEEME, setOpenLEEME] = useState(false)
-    const [openKerexe, setOpenKerexe] = useState(false)
-    const [openApuntes, setOpenApuntes] = useState(false)
-    const [openMapa, setOpenMapa] = useState(false)
-    const [openNoticias, setOpenNoticias] = useState(false)
-    const [openkerdata, setopenkerdata] = useState(false)
-
     // Abre modals segun el JSON
     const openModal = (modal) => {
         let tempCriminales = stateCriminales
+        let tempReportes = stateReportes
 
         let findCriminal = tempCriminales.find(c => c.archivo === modal)
+        let findReporte = tempReportes.find(c => c.archivo === modal)
 
         if (findCriminal) {
             findCriminal.open = !findCriminal.open
             setStateCriminales([...tempCriminales])
+        } else if(findReporte){
+            findReporte.open = !findReporte.open
+            setStateReportes([...tempReportes])
         }
     }
 
@@ -151,14 +154,124 @@ function Game(props) {
         tempStateCriminales.filter(x => x.open === true).forEach(a => a.open = false)
         setStateCriminales([...tempStateCriminales])
 
-        setOpenLEEME(false)
-        setOpenKerexe(false)
-        setOpenApuntes(false)
-        setOpenMapa(false)
-        setOpenNoticias(false)
-        setopenkerdata(false)
+        let tempStateReportes = stateReportes
+        tempStateReportes.filter(x => x.open === true).forEach(a => a.open = false)
+        setStateReportes([...tempStateReportes])
+
+        // setOpenLEEME(false)
+        // setOpenKerexe(false)
+        // setOpenApuntes(false)
+        // setOpenMapa(false)
+        // setOpenNoticias(false)
+        // setopenkerdata(false)
+
+        let tempListApps = listApps
+        const objectsKeys = Object.keys(tempListApps)
+        objectsKeys.forEach(key => {
+            tempListApps[key].open = false
+        })
+        setListApps({...tempListApps})
     }
 
+    tippy('[data-tippy-content]', {
+        // content: 'Prueba Rara de texto largo para entender algo interesante del juego',
+        // ignoreAttributes: true,
+        // followCursor: true,
+        allowHTML: true,
+        arrow: false,
+        getReferenceClientRect: () => ({
+            // width: 200,
+            // height: 100,
+            left: 0,
+            bottom: 0,
+        }),
+        theme: cookies.themeColor,
+        appendTo: document.getElementById("game"),
+    })
+
+    const [listApps, setListApps] = useState({
+        kerexe: {
+            open: false,
+            iconView: true,
+            identify: "kerexe",
+            title: "ker.exe",
+            dtc: "Consola Magica",
+            icon: <GiCowled />,
+            position: [(0), (72)],
+            positionModal: { x: 415, y: 210 },
+            height: 300,
+            width: 450
+        },
+        dataker: {
+            open: false,
+            iconView: false,
+            identify: "dataker",
+            title: "data.ker",
+            dtc: "Lista de comandos utilizados.",
+            icon: <GiRingedPlanet />,
+            position: [(0), (0)],
+            positionModal: { x: 200, y: 0 },
+            height: 500,
+            width: 256
+        },
+        noticiaspaper: {
+            open: false,
+            iconView: true,
+            identify: "noticiaspaper",
+            title: "news.paper",
+            dtc: "Noticias del día actual",
+            icon: <FaNewspaper />,
+            position: [(80*14), (72*6)],
+            positionModal: { x: 365, y: 160 },
+            height: 480,
+            width: 550
+        },
+        leemetxt: {
+            open: false,
+            iconView: true,
+            identify: "leemetxt",
+            title: "LEEME.txt",
+            dtc: "Nota con instrucciones básicas.",
+            icon: <FaFileAlt />,
+            position: [(80 * 3), (72 * 4)],
+            positionModal: { x: 415, y: 110 },
+            height: 500,
+            width: 450
+        },
+        apuntesnote: {
+            open: false,
+            iconView: true,
+            identify: "apuntesnote",
+            title: "apuntes.note",
+            dtc: "Software para guardar datos, que permaneceran siempre.",
+            icon: <IoDocumentSharp />,
+            position: [(0), (72 * 2)],
+            positionModal: { x: (640 - 150), y: (360 - 175) },
+            height: 350,
+            width: 300
+        },
+        brumenmap: {
+            open: false,
+            iconView: true,
+            identify: "brumenmap",
+            title: "Brumen.map",
+            dtc: "Mapa general de la Ciudad de Brumen.",
+            icon: <GiAngelWings />,
+            position: [(80*14), (72*5)],
+            positionModal: { x: 290, y: 80 },
+            height: 460,
+            width: 700
+        },
+        inicio: {
+            open: false,
+            iconView: true,
+            identify: "inicio",
+            title: "Exit",
+            dtc: "Salir a la pantalla principal.",
+            icon: <FaDoorOpen />,
+            position: [(80 * 15), (72 * 9)],
+        },
+    })
 
     return (
         <div id="game">
@@ -170,119 +283,135 @@ function Game(props) {
                 handle=".handleWi"
                 defaultPosition={{ x: 0, y: 0 }}
                 position={null}
-                grid={[5, 5]}
+                grid={[2, 2]}
                 scale={parseFloat(cookies.scale)}
                 bounds="parent"
             >
-                <div className={clsx("handleWi dayContent themeBorder themeFont", cookies.themeColor)}>
-                    <div className="dayText">
-                        <h3>Día: {day}</h3>
+                <div
+                    data-tippy-content={`Progreso general del día.<br/> - Día Actual <br /> - Usos de la Consola`}
+                    className={clsx("dayContent themeBorder themeFont", cookies.themeColor)}
+                >
+
+                    <div className={clsx("handleWi themeBorder", cookies.themeColor)}>
+                        <h5 id="myButton"
+                        > <FaHandPeace /> Estado General</h5>
                     </div>
-                    <div className={clsx("dayButton themeBorder", cookies.themeColor)} onClick={nextDay}>
-                        <p>Fin del Día</p>
-                    </div>
-                    <div className={clsx("dayButton themeBorder", cookies.themeColor)} onClick={closeAllModals}>
-                        <p>Cerrar todo</p>
-                    </div>
-                    <div className={clsx("barCount themeBorder", cookies.themeColor)}>
-                        <div
-                            style={{width: ((countCommands * 100)/G_CountMax) + "%" }}
-                            className={clsx("barCountView themeBG", cookies.themeColor)}>
+
+                    <div className="dayBox">
+                        <div className="dayText"
+                        >
+                            <h3>Día: {day}</h3>
                         </div>
+                        {/* <div className={clsx("dayButton themeBorder", cookies.themeColor)} onClick={nextDay}>
+                            <p>Fin del Día</p>
+                            </div>
+                            <div className={clsx("dayButton themeBorder", cookies.themeColor)} onClick={closeAllModals}>
+                            <p>Cerrar todo</p>
+                        </div> */}
+                        {/* <div className="contentUse">
+                            <h4>Usos:</h4>
+                            <div className={clsx("barCount themeBorder", cookies.themeColor)}>
+                                <div
+                                    style={{width: ((countCommands * 100)/G_CountMax) + "%" }}
+                                    className={clsx("barCountView themeBG", cookies.themeColor)}>
+                                </div>
+                            </div>
+                        </div> */}
                     </div>
                 </div>
             </Draggable>
 
             {/* DataKerex */}
             <IconDesk
-                identify="contador"
-                icon={<GiRingedPlanet />}
-                title="ker.data"
-                modal={setopenkerdata}
-                position={[(0), (0)]}
+                listApps = {listApps}
+                data = {listApps.dataker}
+                setData = {setListApps}
             >
             </IconDesk>
             <Modal
-                open={openkerdata}
-                setOpen={setopenkerdata}
-                identify="contador"
-                icon={<GiRingedPlanet />}
-                title="ker.data"
+                listApps = {listApps}
+                data = {listApps.dataker}
+                setData = {setListApps}
                 content={
                     <div>
                         {kerDataList &&
                             kerDataList
                             .map((data, index)=>{
-                            return(<div key={index} className="dataListActions">
-                                <p>[status]: <strong>{data.status}</strong></p>
-                                <p>[comando]: <strong>{data.command === undefined || data.command === "" ? "null" : data.command}</strong> </p>
-                                <p>[accion]: <strong>{data.data === undefined || data.data === "" ? "null" : data.data}</strong></p>
-                                <hr className={cookies.themeColor} />
-                            </div>)
+                            return(
+                                <div key={index}>
+                                    <div className="dataListActions" >
+                                        <div>
+                                            <p>[success]: <strong>{data.status}</strong></p>
+                                            <p>[command]: <strong>{data.command === undefined || data.command === "" ? "null" : data.command}</strong> </p>
+                                            <p>[param]: <strong>{data.data === undefined || data.data === "" ? "null" : data.data}</strong></p>
+                                        </div>
+                                        <div>
+                                            {data.status === "true" &&
+                                                <div className="dataIcons">
+                                                    <div className="dataCopy">
+                                                        <CopyToClipboard text={`${data.command} ${data.data}`}>
+                                                            <FaCopy />
+                                                        </CopyToClipboard>
+                                                    </div>
+                                                    {/* <FaHeart /> */}
+                                                </div>
+                                            }
+                                            {/* {data.status === "false" && <FaTimes/>} */}
+                                        </div>
+                                    </div>
+                                    <hr className={cookies.themeColor} />
+                                </div>
+                            )
                         }).reverse()}
                     </div>
                 }
-                height={500}
-                width={256}
-                position={{ x: 0, y: 0 }}
             >
             </Modal>
 
             {/* Noticias */}
             <IconDesk
-                identify="noticias"
-                icon={<FaNewspaper />}
-                title="news.paper"
-                modal={setOpenNoticias}
-                position={[(80*14), (72*6)]}
+                listApps = {listApps}
+                data = {listApps.noticiaspaper}
+                setData = {setListApps}
             >
             </IconDesk>
             <Modal
-                open={openNoticias}
-                setOpen={setOpenNoticias}
-                identify="noticias"
-                icon={<FaNewspaper />}
-                title="Noticias"
+                listApps = {listApps}
+                data = {listApps.noticiaspaper}
+                setData = {setListApps}
                 content={<Noticias></Noticias>}
-                height={480}
-                width={550}
-                position={{ x: 365, y: 160 }}
             >
             </Modal>
 
             {/* KER.EXE */}
             <IconDesk
-                identify="kerexe"
-                icon={<GiCowled />}
-                title="ker.exe"
-                modal={setOpenKerexe}
-                position={[(0), (72)]}
+                listApps = {listApps}
+                data = {listApps.kerexe}
+                setData = {setListApps}
             >
             </IconDesk>
             <Modal
-                open={openKerexe}
-                setOpen={setOpenKerexe}
-                identify="kerexe"
-                icon={<GiCowled />}
-                title="ker.exe"
+                listApps = {listApps}
+                data = {listApps.kerexe}
+                setData = {setListApps}
                 content={
                     <Consola data={
                         {
-                            "openKerexe": openKerexe,
-                            "setOpenKerexe": setOpenKerexe,
+                            "listApps": listApps,
+                            "setListApps": setListApps,
+                            "nextDay": nextDay,
+                            // "openKerexe": openKerexe,
+                            // "setOpenKerexe": setOpenKerexe,
                             "openModal": openModal,
                             "countCommands": countCommands,
                             "G_CountMax": G_CountMax,
                             "kerData": kerData,
                             "kill": kill,
                             "criminalesJSON": stateCriminales,
-                            "reportesJSON": reportesJSON,
+                            "reportesJSON": stateReportes,
                         }
                     } />
                 }
-                height={300}
-                width={450}
-                position={{ x: 415, y: 210 }}
             >
             </Modal>
 
@@ -291,16 +420,40 @@ function Game(props) {
                 return (
                     <Modal
                         key={index}
-                        open={doc.open}
+                        data = {{
+                            open: doc.open,
+                            identify: doc.archivo,
+                            title: "[" + doc.archivo + "].doc",
+                            icon: <FaFingerprint />,
+                            positionModal: { x: 415, y: 110 },
+                            height: 500,
+                            width: 450
+                        }}
                         map={true}
                         setOpen={openModal}
-                        identify={doc.archivo}
-                        icon={<FaFingerprint />}
-                        title={"[" + doc.archivo + "].doc"}
                         content={<CriminalesDoc doc={doc}></CriminalesDoc>}
-                        height={500}
-                        width={450}
-                        position={{ x: 415, y: 110 }}
+                    >
+                    </Modal>
+                )
+            })}
+
+            {/* Reportes */}
+            {stateReportes.map((doc, index) => {
+                return (
+                    <Modal
+                        key={index}
+                        data = {{
+                            open: doc.open,
+                            identify: doc.archivo,
+                            title: "[" + doc.archivo + "].doc",
+                            icon: <FaBook />,
+                            positionModal: { x: 415, y: 110 },
+                            height: 500,
+                            width: 450
+                        }}
+                        map={true}
+                        setOpen={openModal}
+                        content={<ReportesDoc doc={doc}></ReportesDoc>}
                     >
                     </Modal>
                 )
@@ -308,78 +461,56 @@ function Game(props) {
 
             {/* LEEME.TXT */}
             <IconDesk
-                identify="leeme"
-                icon={<FaFileAlt />}
-                title="LEEME.txt"
-                modal={setOpenLEEME}
-                position={[(80 * 3), (72 * 4)]}
+                listApps = {listApps}
+                data = {listApps.leemetxt}
+                setData = {setListApps}
             >
             </IconDesk>
             <Modal
-                open={openLEEME}
-                setOpen={setOpenLEEME}
-                identify="leeme"
-                icon={<FaFileAlt />}
-                title="LEEME.txt"
+                listApps = {listApps}
+                data = {listApps.leemetxt}
+                setData = {setListApps}
                 content={Leeme()}
-                height={500}
-                width={450}
-                position={{ x: 415, y: 110 }}
             >
             </Modal>
 
             {/* APUNTES.N */}
             <IconDesk
-                identify="apuntes"
-                icon={<IoDocumentSharp />}
-                title="apuntes.n"
-                modal={setOpenApuntes}
-                position={[(0), (72 * 2)]}
+                listApps = {listApps}
+                data = {listApps.apuntesnote}
+                setData = {setListApps}
             >
             </IconDesk>
             <Modal
-                open={openApuntes}
-                setOpen={setOpenApuntes}
-                identify="apuntes"
-                icon={<IoDocumentSharp />}
-                title="apuntes.n"
+                listApps = {listApps}
+                data = {listApps.apuntesnote}
+                setData = {setListApps}
                 content={<Apuntes></Apuntes>}
-                height={350}
-                width={300}
-                position={{ x: (640 - 150), y: (360 - 175) }}
             >
             </Modal>
 
             {/* Mapa */}
             <IconDesk
-                identify="map"
-                icon={<GiAngelWings />}
-                title="brumen.map"
-                modal={setOpenMapa}
-                position={[(80*14), (72*5)]}
+                listApps = {listApps}
+                data = {listApps.brumenmap}
+                setData = {setListApps}
             >
             </IconDesk>
             <Modal
-                open={openMapa}
-                setOpen={setOpenMapa}
-                identify="map"
-                icon={<GiAngelWings />}
-                title="Brumen.map"
+                listApps = {listApps}
+                data = {listApps.brumenmap}
+                setData = {setListApps}
                 content={<Mapa></Mapa>}
-                height={460}
-                width={700}
-                position={{ x: 290, y: 80 }}
             >
             </Modal>
 
             {/* PANTALLA DE INICIO */}
             <IconDesk
-                identify="inicio"
-                icon={<FaDoorOpen />}
-                title="Exit"
+                listApps = {listApps}
+                data = {listApps.inicio}
+                setData = {setListApps}
                 fn={props.setState}
                 param={0}
-                position={[(80 * 15), (72 * 9)]}
             >
             </IconDesk>
         </div>
