@@ -45,6 +45,7 @@ function Mapa(){
         }
     });
 
+
     return(
         <div className="mapa">
             <Draggable
@@ -60,8 +61,44 @@ function Mapa(){
             >
                 <div className={clsx("mapzoom")}>
                     <div className="contentWorld" style={{transform: "scale("+scala+")"}}>
-                    <World
-                    setCoorSelected={checkData}></World>
+                    <World setCoorSelected={checkData}></World>
+                    <div className="reticula">
+                        <div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>A1</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>A2</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>A3</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>A4</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>A5</h1></div>
+                        </div>
+                        <div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>B1</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>B2</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>B3</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>B4</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>B5</h1></div>
+                        </div>
+                        <div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>C1</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>C2</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>C3</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>C4</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>C5</h1></div>
+                        </div>
+                        <div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>D1</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>D2</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>D3</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>D4</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>D5</h1></div>
+                        </div>
+                        <div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>E1</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>E2</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>E3</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>E4</h1></div>
+                            <div className={clsx("themeBorder", cookies.themeColor)}><h1>E5</h1></div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </Draggable>

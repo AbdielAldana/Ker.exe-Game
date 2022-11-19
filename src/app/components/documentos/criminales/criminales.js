@@ -77,7 +77,7 @@ function Criminales(props) {
                                         {c.condena}
                                     </th>
                                     <th className={clsx("themeBorder", cookies.themeColor)} >
-                                        {c.reporte}
+                                        {c.oculto ? c.reporte.replaceAll(c.reporte, "* * CN5 * *") : c.reporte}
                                     </th>
                                 </tr>
                             )

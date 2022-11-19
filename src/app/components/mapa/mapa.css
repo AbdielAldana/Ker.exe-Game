@@ -1,4 +1,5 @@
 .mapa {
+    overflow: hidden;
     height: 450px;
     width: 680px;
     /* background-color: aliceblue; */
@@ -63,10 +64,50 @@
 
 .cola {
     fill:red !important;
+    stroke: black;
+    /* transform: scale(1.3) translate(-55px, -8px); */
+    animation: pulse 1s infinite ease;
+}
+
+@keyframes pulse{
+    from {filter: invert(1) drop-shadow(0px 0px 10px #fff);}
+    to {filter: invert(1) drop-shadow(0px 0px 0px #fff);}
 }
 
 .cls-4 {
     cursor: pointer;
 }
+.cls-3 {
+    cursor: pointer;
+}
 
-.cls-1{fill:#141414;}.cls-2{fill:#3c3c3c;}.cls-3{fill:gray;}.cls-5{fill:none;}.cls-6{fill:#f2f2f2;}
+.cls-1{fill:#141414;}.cls-2{fill:#3c3c3c;}.cls-3{fill:rgb(112, 129, 115);}.cls-5{fill:none;}.cls-6{fill:#f2f2f2;}
+
+
+.mapa .reticula {
+    top: 0;
+    z-index: -1;
+    position: absolute;
+    height: 450px;
+    width: 680px;
+    /* background-color: red; */
+    display: inline-flex;
+    flex-direction: column;
+}
+.mapa .reticula div {
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+}
+
+.mapa .reticula div div{
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Capa_2 {
+    filter: opacity(.7) brightness(1.3);
+}

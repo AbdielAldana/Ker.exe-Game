@@ -2,9 +2,9 @@
     {
         "open": false,
         "archivo": "dc1001",
-        "status": "SE BUSCA",
+        "status": false,
         "nombre": "Marcel García",
-        "alias": "Resortes",
+        "alias": "NC",
         "edad": "24 años",
         "altura": "170 cm",
         "peso": "73 kg",
@@ -13,16 +13,11 @@
         "huellas": ["add", "acf", "ebd","ddf","eae"],
         "crimenes" : [
             {
-                "code": "H - 601",
-                "crimen": "Robo de informacion",
-                "condena": "1A 0M 0D",
-                "reporte": "dr1001a"
-            },
-            {
-                "code": "AV - 501",
-                "crimen": "Asalto y Violencia",
-                "condena": "NC",
-                "reporte": "dr1001b"
+                "oculto": true,
+                "reporte": "dr1001a",
+                "code": "DAI002",
+                "crimen": "Homicidio Defensa Propia",
+                "condena": "NC"
             }
         ]
     },
@@ -38,25 +33,6 @@
         "sexo": "Masculino",
         "img": "img/luca.png",
         "huellas": ["baf", "bee", "cfd", "efb", "fed"],
-        "crimenes" : [
-            {
-                "code": "H - 601",
-                "crimen": "Hacker",
-                "condena": "Inocente",
-                "reporte": "dr1002a"
-            },
-            {
-                "code": "H - 601",
-                "crimen": "Hacker",
-                "condena": "Inocente",
-                "reporte": "dr1002b"
-            },
-            {
-                "code": "H - 601",
-                "crimen": "Hacker",
-                "condena": "Inocente",
-                "reporte": "dr1002c"
-            }
-        ]
+        "crimenes" : []
     }
 ]

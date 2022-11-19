@@ -31,3 +31,10 @@
 #IconDesk.iconXD svg{
     font-size: 28px;
 }
+
+#IconDesk.showIcon {
+    display: block;
+}
+#IconDesk.hideIcon {
+    display: none;
+}
